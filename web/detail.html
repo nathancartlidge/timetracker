@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <title>Time Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2 id="client"></h2>
+
+    <table id="clientList" class="fancy">
+        <tr id="headings">
+            <th>category</th>
+        </tr>
+        <tr id="values">
+            <th>time</th>
+        </tr>
+    </table>
+
+    <br>
+
+    <span id="totalTime">loading...</span>
+
+    <br><br>
+
+    recent entries:
+    <table id="entries" class="fancy">
+        <tr>
+            <th>category</th>
+            <th>date</th>
+            <th>hours</th>
+            <th>note</th>
+            <th>date added</th>
+            <th>delete</th>
+        </tr>
+    </table>
+
+    <br>
+
+    <button>download data</button>
+</body>
+<script type="text/javascript" src="/eel.js"></script>
+<script src="detail.js" defer></script>
+</html>

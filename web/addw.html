@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title>Time Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>add work category</h2>
+    <input id="name" type="text" placeholder="work category"></input>
+    <button onclick="addWork()">add work category</button>
+    <br><br><br>
+    current categories:
+    <ul id="cats"></ul>
+</body>
+<script type="text/javascript" src="/eel.js"></script>
+<script>
+    const cats = document.getElementById("cats")
+    const work = document.getElementById("name")
+
+    eel.get_worktypes()(types => {
+        types.forEach(type => {
+            let entry = document.createElement("li");
+            entry.innerHTML = type;
+            cats.appendChild(entry);
+        });
+    });
+
+    function addClient() {
+        if (work.value == "") {
+            alert("invalid name!");
+            return;
+        }
+        eel.add_work(work.value)(_ => {
+            window.location.href = "/index.html";
+        })
+    }
+</script>
+</html>

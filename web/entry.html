@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <title>Time Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>add entry</h2>
+    <table id="entry">
+        <tr>
+            <td><label for="client">client</label></td>
+            <td>
+                <select id="client">
+                    <option selected disabled>choose a client</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="worktype">work type</label></td>
+            <td>
+                <select id="worktype">
+                    <option selected disabled>choose a work type</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="date">date</label></td>
+            <td><input id="date" type="date"></td>
+        </tr>
+        <tr>
+            <td><label for="time">hours worked</label></td>
+            <td><input id="time" type="time" value="00:00"></td>
+        </tr>
+        <tr>
+            <td><label for="note">comments</label></td>
+            <td><input id="note" type="text" value=""></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <button onclick="addClient()">add entry</button>
+</body>
+<script type="text/javascript" src="/eel.js"></script>
+<script src="entry.js"></script>
+</html>

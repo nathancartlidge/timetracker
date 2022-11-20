@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title>Time Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>time tracker</h2>
+
+    <button onclick="window.location.href = '/entry.html'">add entry</button>
+    <button onclick="window.location.href = '/add.html'">add client</button>
+    <button onclick="window.location.href = '/addw.html'">add work category</button>
+
+    <br><br>
+
+    <table id="clientList" class="fancy">
+        <tr>
+            <th>client name</th>
+            <th>total time</th>
+        </tr>
+    </table>
+
+    <br>
+    <span id="clientCount">loading...</span>
+
+    <br><br>
+    <button onclick="getData()">download all data</button>
+</body>
+<script type="text/javascript" src="/eel.js"></script>
+<script src="index.js" defer></script>
+</html>

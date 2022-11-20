@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>Time Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>add client</h2>
+    <input id="name" type="text" placeholder="client name"></input>
+    <button onclick="addClient()">add client</button>
+
+    <br><br><br>
+    current clients:
+    <ul id="cats"></ul>
+</body>
+<script type="text/javascript" src="/eel.js"></script>
+<script>
+    const client = document.getElementById("name");
+    const cats = document.getElementById("cats");
+
+    eel.get_clients()(clients => {
+        clients.forEach(client => {
+            let entry = document.createElement("li");
+            entry.innerHTML = client.name;
+            cats.appendChild(entry);
+        });
+    });
+
+    function addClient() {
+        if (client.value == "") {
+            alert("invalid name!");
+            return;
+        }
+        eel.add_client(client.value)(_ => {
+            window.location.href = "/index.html";
+        });
+    }
+</script>
+</html>
