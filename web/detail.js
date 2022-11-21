@@ -19,8 +19,8 @@ if (client == null) {
                     table_headings.appendChild(header);
 
                     let value = document.createElement("td");
-                    let hours = Math.floor(element[1]);
-                    let mins = Math.floor((element[1] % 1) * 60 + 0.0001);
+                    let hours = Math.floor(element[1] + 0.0001);
+                    let mins = Math.floor(((element[1] + 0.0001) % 1) * 60);
                     let timeText = hours + ':' + String(mins).padStart(2, '0');
                     value.innerText = timeText;
                     table_values.appendChild(value);
@@ -28,8 +28,8 @@ if (client == null) {
             });
         });
         eel.get_time(id, false)(time => {
-            let hours = Math.floor(time);
-            let mins = Math.floor((time % 1) * 60 + 0.0001);
+            let hours = Math.floor(time[0] + 0.0001);
+            let mins = Math.floor(((time[0] + 0.0001) % 1) * 60);
             let timeText = hours + ':' + String(mins).padStart(2, '0');
 
             document.getElementById("totalTime").innerText = timeText + " total";
@@ -46,8 +46,8 @@ if (client == null) {
                 date.innerText = entry[1];
                 row.appendChild(date);
                 let hours = document.createElement("td");
-                let minsText = Math.floor((entry[2] % 1) * 60 + 0.0001);
-                let timeText = Math.floor(entry[2]) + ':' + String(minsText).padStart(2, '0');
+                let minsText = Math.floor(((entry[2] + 0.0001) % 1) * 60);
+                let timeText = Math.floor(entry[2] + 0.0001) + ':' + String(minsText).padStart(2, '0');
                 hours.innerText = timeText;
                 row.appendChild(hours);
                 let note = document.createElement("td");
@@ -67,6 +67,7 @@ if (client == null) {
                 table_entries.appendChild(row);
             });
         });
+        document.getElementById("download").setAttribute("onclick", "getData(" + id + ")")
     })
     function deleteRow(button) {
         eel.delete_entry(button.getAttribute("data-client"))(_ => {
@@ -75,3 +76,12 @@ if (client == null) {
     }
 }
 
+function getData(client) {
+    eel.make_csv(client)(fn => {
+        let anchor = document.createElement('a');
+        anchor.href = "/data/" + fn;
+        anchor.target = '_blank';
+        anchor.download = fn;
+        anchor.click();
+    })
+}

@@ -21,6 +21,10 @@ def get_entries(filter=None):
     return handler.get_entries(filter)
 
 @eel.expose()
+def make_csv(filter=None):
+    return handler.get_pandas(filter)
+
+@eel.expose()
 def get_time(client_id, grouped: bool = False):
     if grouped:
         return handler.get_hours_by_client(client_id)

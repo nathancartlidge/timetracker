@@ -47,7 +47,7 @@ SELECT clients.client_name as client, worktype.work_name as worktype,
 GET_ENTRIES_BY_ID = """
 SELECT worktype.work_name as worktype, entries.date as date,
        entries.hours as hours, entries.comment as comment,
-       datetime(entries.addtime, 'unixepoch') as addtime,
+       datetime(entries.addtime, 'unixepoch') as add_time,
        entries.entry_id as entry_id
     FROM entries
         INNER JOIN worktype ON entries.work_id = worktype.work_id

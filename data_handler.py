@@ -2,6 +2,7 @@ import sqlite3
 from time import time
 
 import pandas as pd
+import numpy as np
 
 from queries import *
 
@@ -98,9 +99,33 @@ class DataHandler:
             cursor.close()
             conn.commit()
 
-    def get_pandas(self):
+    def get_pandas(self, client_id=None):
         with sqlite3.connect(f"{self.file}.db") as conn:
-            pd
+            if client_id is None:
+                data = pd.read_sql_query(GET_ENTRIES, conn)
+            else:
+                data = pd.read_sql_query(GET_ENTRIES, conn, params=(client_id, ))
+
+            data["time"] = np.round(data["hours"], 6)
+
+            data["minutes"] = np.floor(60 * ((data["hours"] + 0.0001) % 1))
+            data["minutes"] = data["minutes"].astype(int)
+
+            data["hours"] = np.floor(data["hours"] + 0.0001)
+            data["hours"] = data["hours"].astype(int)
+
+            if client_id is None:
+                data = data[["date", "client", "worktype", "time", "hours",
+                             "minutes", "comment", "addtime"]]
+                data.to_csv("web/data/all.csv", index=False)
+                return f"all.csv"
+
+            else:
+                data = data[["date", "worktype", "time", "hours",
+                             "minutes", "comment", "addtime"]]
+                data.to_csv(f"web/data/client_{client_id}.csv", index=False)
+                return f"client_{client_id}.csv"
+
 
     def get_entries(self, client_id=None):
         with sqlite3.connect(f"{self.file}.db") as conn:
