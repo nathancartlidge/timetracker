@@ -52,4 +52,4 @@ def add_entry(client, worktype, date, hours, comment):
     handler.add_entry(client, worktype, date, hours, comment)
 
 print("Server running on http://localhost:8080")
-eel.start('index.html', address="0.0.0.0", block=True, mode=None, port=8080)
+eel.start('index.html', host="0.0.0.0", block=True, mode=None, port=8080)
