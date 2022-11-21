@@ -2,7 +2,7 @@ import eel
 from data_handler import DataHandler
 
 eel.init('web')
-handler = DataHandler("test")
+handler = DataHandler("/data/test")
 
 @eel.expose()
 def get_clients():
