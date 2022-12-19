@@ -30,9 +30,9 @@ if (client == null) {
         eel.get_time(id, false)(time => {
             let hours = Math.floor(time[0] + 0.0001);
             let mins = Math.floor(((time[0] + 0.0001) % 1) * 60);
-            let timeText = hours + ':' + String(mins).padStart(2, '0');
+            let timeText = hours + "h" + String(mins).padStart(2, '0') + "m";
 
-            document.getElementById("totalTime").innerText = timeText + " total";
+            heading.innerText += ": " + timeText;
         });
         eel.get_entries(id)(entries => {
             console.log(entries);
@@ -53,14 +53,15 @@ if (client == null) {
                 let note = document.createElement("td");
                 note.innerText = entry[3];
                 row.appendChild(note);
-                let added = document.createElement("td");
-                added.innerText = entry[4];
-                row.appendChild(added);
+                // let added = document.createElement("td");
+                // added.innerText = entry[4];
+                // row.appendChild(added);
                 let delete_entry = document.createElement("td");
                 let delete_button = document.createElement("button")
                 delete_button.innerText = "x"
                 delete_button.setAttribute("data-client", entry[5]);
                 delete_button.setAttribute("onclick", "deleteRow(this)");
+                delete_button.classList.add("warn");
                 delete_entry.appendChild(delete_button);
                 row.appendChild(delete_entry);
 
@@ -68,11 +69,18 @@ if (client == null) {
             });
         });
         document.getElementById("download").setAttribute("onclick", "getData(" + id + ")")
+        document.getElementById("delete").setAttribute("onclick", "deleteClient(" + id + ")");
     })
     function deleteRow(button) {
         eel.delete_entry(button.getAttribute("data-client"))(_ => {
             window.location.reload();
         })
+    }
+    function deleteClient(client_id) {
+        del = confirm("Are you sure you wish to delete this client? This action is not reversible!");
+        if (del == true) {
+            eel.delete_client(client_id);
+        }
     }
 }
 

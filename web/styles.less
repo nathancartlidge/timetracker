@@ -13,6 +13,9 @@ table.fancy {
         padding: 8px;
         text-align: left;    
     }
+    th {
+        background-color: #eaeaea;
+    }
 }
 
 table#entry {
@@ -36,4 +39,20 @@ input {
 
 button {
     cursor: pointer;
+
+    &.emphasis {
+        background-color: #b6edf4;
+
+        &:hover {
+            background-color: #86dae5;
+        }
+    }
+
+    &.warn {
+        background-color: #f7d2d2;
+
+        &:hover {
+            background-color: #e8abab;
+        }
+    }
 }

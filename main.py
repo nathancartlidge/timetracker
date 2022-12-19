@@ -43,6 +43,10 @@ def delete_entry(entry_id):
     handler.delete_entry(entry_id)
 
 @eel.expose()
+def delete_client(client_id):
+    handler.delete_client(client_id)
+
+@eel.expose()
 def add_client(client_name):
     return handler.get_client_id(client_name)
 

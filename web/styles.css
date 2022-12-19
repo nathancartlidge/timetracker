@@ -17,6 +17,9 @@ table.fancy td {
   padding: 8px;
   text-align: left;
 }
+table.fancy th {
+  background-color: #eaeaea;
+}
 table#entry td {
   padding: 2px 8px;
 }
@@ -32,5 +35,17 @@ input[type=text] {
 }
 button {
   cursor: pointer;
+}
+button.emphasis {
+  background-color: #b6edf4;
+}
+button.emphasis:hover {
+  background-color: #86dae5;
+}
+button.warn {
+  background-color: #f7d2d2;
+}
+button.warn:hover {
+  background-color: #e8abab;
 }
 /*# sourceMappingURL=./styles.css.map */

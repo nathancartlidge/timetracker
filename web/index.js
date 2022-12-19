@@ -8,20 +8,27 @@ eel.get_clients()(clients => {
         let name = document.createElement("td");
         name.innerText = client.name;
 
-        let getTime = document.createElement("td");
-        let getTimeButton = document.createElement("button");
+        let timeText = document.createElement("td");
+        let timeTextSpan = document.createElement("span");
         eel.get_time(client.id)(time => {
             hours = Math.floor(time[0] + 0.0001);
             mins = Math.floor(((time[0] + 0.0001) % 1) * 60);
             timeText = hours + ':' + String(mins).padStart(2, '0');
-            getTimeButton.innerHTML = timeText;
+            timeTextSpan.innerHTML = timeText;
         })
-        getTimeButton.setAttribute("data-client", client.name);
-        getTimeButton.setAttribute("onclick", "getTime(this)");
-        getTime.appendChild(getTimeButton);
+        timeText.appendChild(timeTextSpan);
+
+        let details = document.createElement("td");
+        let detailsButton = document.createElement("button")
+        detailsButton.setAttribute("data-client", client.name);
+        detailsButton.setAttribute("onclick", "getTime(this)");
+        detailsButton.innerHTML = "→"
+
+        details.appendChild(detailsButton);
 
         row.appendChild(name);
-        row.appendChild(getTime);
+        row.appendChild(timeText);
+        row.appendChild(details)
         clientList.appendChild(row);
     });
 

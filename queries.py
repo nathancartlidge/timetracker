@@ -42,7 +42,7 @@ SELECT clients.client_name as client, worktype.work_name as work_type,
     FROM entries
         INNER JOIN clients ON entries.client_id = clients.client_id
         INNER JOIN worktype ON entries.work_id = worktype.work_id
-    ORDER BY entries.entry_id DESC
+    ORDER BY entries.date ASC
 """
 GET_ENTRIES_BY_ID = """
 SELECT worktype.work_name as work_type, entries.date as date,
@@ -52,10 +52,11 @@ SELECT worktype.work_name as work_type, entries.date as date,
     FROM entries
         INNER JOIN worktype ON entries.work_id = worktype.work_id
     WHERE entries.client_id = ?
-    ORDER BY entries.entry_id DESC
+    ORDER BY entries.date ASC
 """
 
-DELETE_ENTRY = "DELETE FROM entries WHERE entry_id = ?"
+DELETE_ENTRY = "DELETE FROM clients WHERE client_id = ?"
+DELETE_CLIENT = "DELETE FROM entries WHERE entry_id = ?"
 
 GET_CLIENTS = "SELECT client_id, client_name FROM clients"
 GET_WORK = "SELECT work_name FROM worktype"
