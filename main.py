@@ -1,8 +1,11 @@
 import eel
+import logging
 from data_handler import DataHandler
 
-eel.init('web')
+logging.basicConfig(level=logging.INFO)
 handler = DataHandler("/data/test")
+
+eel.init("web")
 
 @eel.expose()
 def get_clients():
@@ -51,5 +54,8 @@ def add_work(work_name):
 def add_entry(client, worktype, date, hours, comment):
     handler.add_entry(client, worktype, date, hours, comment)
 
-print("Server running on http://localhost:8080")
-eel.start('index.html', host="0.0.0.0", block=True, mode=None, port=8080)
+logging.info("Server running on http://localhost:8080")
+eel.start("index.html", host="0.0.0.0", block=True, mode=None, port=8080,
+          shutdown_delay=86400)
+
+logging.info("Shutdown due to inactivity")
