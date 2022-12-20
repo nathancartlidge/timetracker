@@ -7,9 +7,11 @@
 </head>
 <body>
     <h2>add work category</h2>
-    <input id="name" type="text" placeholder="work category"></input>
-    <button onclick="addWork()">add work category</button>
-    <br><br><br>
+    <form>
+        <input id="name" type="text" placeholder="work category"></input>
+        <input type="submit" onclick="addWork()" value="add"/>
+    </form>
+    <br><br>
     current categories:
     <ul id="cats"></ul>
 </body>

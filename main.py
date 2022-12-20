@@ -2,6 +2,8 @@ import eel
 import logging
 from data_handler import DataHandler
 
+PORT = 8081
+
 logging.basicConfig(level=logging.INFO)
 handler = DataHandler("/data/test")
 
@@ -40,11 +42,11 @@ def get_time(client_id, grouped: bool = False):
 
 @eel.expose()
 def delete_entry(entry_id):
-    handler.delete_entry(entry_id)
+    handler.delete_entry(int(entry_id))
 
 @eel.expose()
 def delete_client(client_id):
-    handler.delete_client(client_id)
+    handler.delete_client(int(client_id))
 
 @eel.expose()
 def add_client(client_name):
@@ -58,8 +60,8 @@ def add_work(work_name):
 def add_entry(client, worktype, date, hours, comment):
     handler.add_entry(client, worktype, date, hours, comment)
 
-logging.info("Server running on http://localhost:8080")
-eel.start("index.html", host="0.0.0.0", block=True, mode=None, port=8080,
+logging.info(f"Server running on http://localhost:{PORT}")
+eel.start("index.html", host="0.0.0.0", block=True, mode=None, port=PORT,
           shutdown_delay=86400)
 
 logging.info("Shutdown due to inactivity")

@@ -3,18 +3,19 @@
 <head>
     <title>Time Tracker</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
     <h2>time tracker</h2>
 
-    <button onclick="window.location.href = '/entry.html'" class="emphasis">add entry</button>
-    <button onclick="window.location.href = '/add.html'">add client</button>
-    <button onclick="window.location.href = '/addw.html'">add work category</button>
+    <a href="/entry.html"><button class="emphasis">add entry</button></a>
+    <a href="/add.html"><button>add client</button></a>
+    <a href="/addw.html"><button>add work category</button></a>
 
     <br><br>
 
-    <table id="clientList" class="fancy">
+    <table id="clientList" class="fancy hide">
         <tr>
             <th>client name</th>
             <th>total time</th>
@@ -26,7 +27,10 @@
     <span id="clientCount">loading...</span>
 
     <br><br>
-    <button onclick="getData()">download all data</button>
+    <button onclick="getData()" class="download" title="download all">
+        <i class="material-icons">save_alt</i>
+    </button>
+
 </body>
 <script type="text/javascript" src="/eel.js"></script>
 <script src="index.js" defer></script>

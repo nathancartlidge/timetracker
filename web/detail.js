@@ -6,12 +6,16 @@ const searchParams = new URLSearchParams(window.location.search);
 const client = searchParams.get("client");
 
 if (client == null) {
-    heading.innerText = "error";
+    heading.innerText = "error getting client";
 } else {
     heading.innerText = "client " + client;
     eel.add_client(client)(id => {
         eel.get_time(id, true)(group => {
-            console.log(group)
+            if (group.length != 0) {
+                document.querySelectorAll(".hide").forEach(el => {
+                    el.classList.remove("hide");
+                })
+            }
             group.forEach(element => {
                 if (element != null) {
                     let header = document.createElement("th");
@@ -80,6 +84,7 @@ if (client == null) {
         del = confirm("Are you sure you wish to delete this client? This action is not reversible!");
         if (del == true) {
             eel.delete_client(client_id);
+            window.location = "index.html";
         }
     }
 }
@@ -92,4 +97,12 @@ function getData(client) {
         anchor.download = fn;
         anchor.click();
     })
+}
+
+function addEntry() {
+    if (client != null) {
+        window.location = "entry.html?client=" + client
+    } else {
+        window.location = "entry.html"
+    }
 }

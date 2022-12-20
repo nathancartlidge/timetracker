@@ -55,11 +55,19 @@ SELECT worktype.work_name as work_type, entries.date as date,
     ORDER BY entries.date ASC
 """
 
-DELETE_ENTRY = "DELETE FROM clients WHERE client_id = ?"
-DELETE_CLIENT = "DELETE FROM entries WHERE entry_id = ?"
+DELETE_CLIENT = "DELETE FROM clients WHERE client_id = ?"
+DELETE_ENTRY = "DELETE FROM entries WHERE entry_id = ?"
 
-GET_CLIENTS = "SELECT client_id, client_name FROM clients"
-GET_WORK = "SELECT work_name FROM worktype"
+GET_CLIENTS = """
+SELECT client_id, client_name
+    FROM clients
+    ORDER BY client_name
+"""
+GET_WORK = """
+SELECT work_name
+    FROM worktype
+    ORDER BY work_name
+"""
 
 GET_CLIENTID = "SELECT client_id FROM clients WHERE client_name = ?"
 GET_WORKID = "SELECT work_id FROM worktype WHERE work_name = ?"

@@ -3,14 +3,21 @@
 <head>
     <title>Time Tracker</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
     <h2 id="client">loading...</h2>
 
+    <button onclick="addEntry()">add entry</button></a>
+
+    <br><br><br>
+
+    <div class="hide">
+    time by category:
     <table id="clientList" class="fancy">
         <tr id="headings">
-            <th>x</th>
+            <th></th>
         </tr>
         <tr id="values">
             <th>time</th>
@@ -31,10 +38,16 @@
         </tr>
     </table>
 
-    <br>
+    </div>
 
-    <button id="download">download data</button>
-    <button id="delete" class="warn">delete client</button>
+    <!-- <button id="download">download data</button> -->
+    <button id="delete" class="warn delete" title="delete client">
+        <i class="material-icons">delete_forever</i>
+    </button>
+
+    <button id="download" class="download" title="download all">
+        <i class="material-icons">save</i>
+    </button>
 </body>
 <script type="text/javascript" src="/eel.js"></script>
 <script src="detail.js" defer></script>

@@ -2,6 +2,12 @@ const clientList = document.getElementById("clientList");
 const clientCount = document.getElementById("clientCount");
 
 eel.get_clients()(clients => {
+    if (clients.length != 0) {
+        document.querySelectorAll(".hide").forEach(el => {
+            el.classList.remove("hide");
+        })
+    }
+
     clients.forEach(client => {
         let row = document.createElement("tr");
 
@@ -32,7 +38,7 @@ eel.get_clients()(clients => {
         clientList.appendChild(row);
     });
 
-    clientCount.innerText = clients.length + " clients"
+    clientCount.innerText = clients.length + ((clients.length == 1) ? " client" : " clients")
 })
 
 function getTime(button) {

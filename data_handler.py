@@ -61,6 +61,7 @@ class DataHandler:
             client_id = cursor.fetchone()
 
             if client_id is None:
+                self.logger.info("Creating client '%s'", name)
                 cursor.execute(ADD_CLIENT, (name, ))
                 cursor.execute(GET_CLIENTID, (name, ))
                 client_id = cursor.fetchone()
@@ -93,6 +94,7 @@ class DataHandler:
             work_id = cursor.fetchone()
 
             if work_id is None:
+                self.logger.info("Creating category '%s'", name)
                 cursor.execute(ADD_WORK, (name, ))
                 cursor.execute(GET_WORKID, (name, ))
                 work_id = cursor.fetchone()
