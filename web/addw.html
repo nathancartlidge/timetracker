@@ -8,7 +8,7 @@
 <body>
     <h2>add work category</h2>
     <form>
-        <input id="name" type="text" placeholder="work category"></input>
+        <input id="wname" type="text" placeholder="work category"></input>
         <input type="submit" onclick="addWork()" value="add"/>
     </form>
     <br><br>
@@ -18,7 +18,7 @@
 <script type="text/javascript" src="/eel.js"></script>
 <script>
     const cats = document.getElementById("cats")
-    const work = document.getElementById("name")
+    const work = document.getElementById("wname")
 
     eel.get_worktypes()(types => {
         types.forEach(type => {

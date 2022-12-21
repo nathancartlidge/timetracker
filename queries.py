@@ -57,6 +57,7 @@ SELECT worktype.work_name as work_type, entries.date as date,
 
 DELETE_CLIENT = "DELETE FROM clients WHERE client_id = ?"
 DELETE_ENTRY = "DELETE FROM entries WHERE entry_id = ?"
+DELETE_ENTRIES_BY_CLIENT = "DELETE FROM entries WHERE client_id = ?"
 
 GET_CLIENTS = """
 SELECT client_id, client_name

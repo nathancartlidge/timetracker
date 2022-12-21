@@ -82,6 +82,7 @@ class DataHandler:
     def delete_client(self, client_id):
         with sqlite3.connect(f"{self.file}.db") as conn:
             cursor = conn.cursor()
+            cursor.execute(DELETE_ENTRIES_BY_CLIENT, (client_id, ))
             cursor.execute(DELETE_CLIENT, (client_id, ))
             cursor.close()
             conn.commit()

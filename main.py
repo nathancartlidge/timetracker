@@ -5,7 +5,7 @@ from data_handler import DataHandler
 PORT = 8081
 
 logging.basicConfig(level=logging.INFO)
-handler = DataHandler("/data/test")
+handler = DataHandler("/data/times")
 
 eel.init("web")
 
